@@ -62,21 +62,23 @@ function showB() {
                     turn++;
                 }
                 showB();
-                check(pos1,pos2);
-
-
+                if (check(pos1,pos2)){
+                    gameOver();
+                }
             }
         }
     }
     function check(x,y) {
-        if((a[x][y+1] == a[x][y] && a[x][y+2] == a[x][y]) || (a[x][y-1] == a[x][y] && a[x][y+1] == a[x][y]) ||(a[x][y-1] == a[x][y] && a[x][y-2] == a[x][y])){
-            gameOver();
-        }
-
-        if((a[x+1][y] == a[x][y]) &&(a[x+2][y] = a[x][y])){
-            gameOver();
-        }
-
+      let simb = a[x][y];
+      if(a[x][0] == simb && a[x][1] == simb && a[x][2] == simb){
+          return true;
+      }else if(a[0][y] == simb && a[1][y] == simb && a[2][y] == simb){
+          return true;
+      }else if(a[0][0] == simb && a[1][1] == simb && a[2][2] == simb){
+          return true;
+      }else if(a[0][2] == simb && a[1][1] == simb && a[2][0] == simb){
+          return true;
+      }else return false;
     }
 
     function gameOver() {
